@@ -1,0 +1,29 @@
+{
+  "Aliases": {},
+  "OverlayState": {
+    "ClayMap": false,
+    "DrawPath": false,
+    "Hitbox": false,
+    "WeaponGuide": false,
+    "JunimoKart": false,
+    "MapWeights": false,
+    "MinesLadder": false,
+    "MinesRocks": false,
+    "MouseData": false,
+    "Grid": false,
+    "TileHighlight": false,
+    "ObjectTiles": false,
+    "TimerPanel": true,
+    "Layers": false,
+    "imgui": false,
+    "Mouse": false
+  },
+  "LogicState": {
+    "AcceptSleep": false,
+    "AdvanceFrozen": true,
+    "AnimationCancel": true,
+    "DialogueBox": true,
+    "SaveGame": false,
+    "ScreenFade": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "Aliases": {},
+  "OverlayState": {
+    "ClayMap": false,
+    "Debris": true,
+    "DrawPath": false,
+    "Fishing": false,
+    "Hitbox": true,
+    "WeaponGuide": true,
+    "JotPK": false,
+    "JunimoKart": false,
+    "LuaOverlay": true,
+    "MapWeights": false,
+    "MinesLadder": true,
+    "MinesRocks": true,
+    "MixedSeed": false,
+    "MouseData": true,
+    "ObjectDrops": false,
+    "Grid": true,
+    "TileHighlight": false,
+    "ObjectTiles": false,
+    "TileText": false,
+    "TimerPanel": true,
+    "Layers": true,
+    "imgui": true,
+    "Mouse": true
+  },
+  "LogicState": {
+    "AcceptSleep": false,
+    "AdvanceFrozen": true,
+    "AnimationCancel": true,
+    "DialogueBox": false,
+    "SaveGame": false,
+    "ScreenFade": true
+  }
+}
