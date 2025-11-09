@@ -11,7 +11,7 @@ local facingDirection = {
 }
 
 local function _swing_dir(p, dir)
-    local player = utils.current_player(p.index)
+    local player = InstanceCurrentPlayer.Get(p.index)
     if player == nil or player.CurrentTool == nil or player.UsingTool then
         wait_swing(p.index)
         return
@@ -90,6 +90,9 @@ local function break_tree(index)
 end
 
 return {
+    helpers = {
+        swing = _swing_dir,
+    },
     funcs = {
         { func = swing_up,    name = "swing_up",    desc = "swing tool up" },
         { func = swing_right, name = "swing_right", desc = "swing tool right" },

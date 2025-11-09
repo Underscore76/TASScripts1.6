@@ -14,7 +14,7 @@ local p4_fav = "The Bit"
 
 
 
-GamePadInputQueue.Clear()
+-- GamePadInputQueue.Clear()
 -- buttons for players to handle their character creation
 local Gamepad = require('gamepad')
 local p2 = Gamepad.new(1)
@@ -231,29 +231,29 @@ local function text_entry(gamepad, text)
 end
 
 -- p2 join
-queue_to_name(p2)
-text_entry(p2, p2_name)
-back(p2)
-name_to_favorite(p2)
-text_entry(p2, p2_fav)
-back(p2)
-favorite_to_female(p2)
-female_to_random(p2)
-click(p2)
-random_to_ok(p2)
+-- queue_to_name(p2)
+-- text_entry(p2, p2_name)
+-- back(p2)
+-- name_to_favorite(p2)
+-- text_entry(p2, p2_fav)
+-- back(p2)
+-- favorite_to_female(p2)
+-- female_to_random(p2)
+-- click(p2)
+-- random_to_ok(p2)
 
 -- p3 join
-wait(p3, 3)
-queue_to_name(p3)
-text_entry(p3, p3_name)
-back(p3)
-name_to_favorite(p3)
-text_entry(p3, p3_fav)
-back(p3)
-favorite_to_female(p3)
-female_to_random(p3)
-click(p3)
-random_to_ok(p3)
+-- wait(p3, 3)
+-- queue_to_name(p3)
+-- text_entry(p3, p3_name)
+-- back(p3)
+-- name_to_favorite(p3)
+-- text_entry(p3, p3_fav)
+-- back(p3)
+-- favorite_to_female(p3)
+-- female_to_random(p3)
+-- click(p3)
+-- random_to_ok(p3)
 
 -- p4 join
 wait(p4, 6)
@@ -268,6 +268,6 @@ female_to_random(p4)
 click(p4)
 random_to_ok(p4)
 
-for i = 1, 3 do
-    printf("P%d\t%d", i, GamePadInputQueue.Queues[i].Count)
-end
+-- for i = 1, 3 do
+--     printf("P%d\t%d", i, GamePadInputQueue.Queues[i].Count)
+-- end

@@ -121,8 +121,42 @@ function utils.current_menu(index)
     return menu_data
 end
 
+function utils.swap_to_item_frame(item)
+    return function(p)
+        if item == nil then
+            return
+        end
+        local player = utils.player(p.index)
+        local target = _get_inventory_index(player, item)
+        if target == -1 then
+            error("Could not find item: " .. item)
+        end
+        local index = player.CurrentToolIndex
+        if index ~= target then
+            if target >= 24 then
+                -- shift page back
+                p:lt()
+                return false
+            end
+            if target >= 12 then
+                -- shift page forward
+                p:rt()
+                return false
+            end
+            if target > index then
+                p:zr()
+                return true
+            elseif target < index then
+                p:zl()
+                return true
+            end
+        end
+        return false
+    end
+end
+
 function utils.swap_to_item(p, item)
-    local player = utils.player(p.index)
+    local player = InstanceCurrentPlayer.Get(p.index).Player
     local target = _get_inventory_index(player, item)
     if target == -1 then
         error("Could not find item: " .. item)
@@ -162,6 +196,14 @@ function utils.swap_to_item(p, item)
         coroutine.yield()
         index = player.CurrentToolIndex
     end
+end
+
+function utils.copy_highlights()
+    local s = ""
+    for _, v in list_items(TileHighlight.States) do
+        s = s .. string.format("Vector2(%d, %d), ", v.Tile.X, v.Tile.Y)
+    end
+    DesktopClipboard.SetText(s)
 end
 
 return utils

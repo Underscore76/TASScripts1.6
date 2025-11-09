@@ -1,0 +1,58 @@
+-- local fileio = require('fileio')
+
+-- function count()
+--     local c = 0
+--     for k, v in dict_items(Game1.locations[21].terrainFeatures) do
+--         if v:GetType().Name == "HoeDirt" then
+--             c = c + 1
+--         end
+--     end
+--     return c
+-- end
+
+-- _ = [[
+-- offset_by:503
+-- iterations:100
+-- curr_seed:13109
+-- best_count:34
+-- best_offset:0
+-- best_seed:5540
+-- for game_seed 1418131624
+-- ]]
+
+-- -- the audio engine will die anyways and it leaks memory real bad
+-- AudioEngine_Constructor.BreakAudioEngine = true
+-- -- load the game
+-- bfload('day1')
+-- gcf()
+-- Controller.Console:Open()
+-- local file = Constants.ScriptsPath .. '/' .. 'FrameRNG.dat'
+-- -- read the current job state
+-- local setup = fileio.ReadFileTable(file)
+
+-- -- run the job
+-- local offset = 0
+-- for i = 1, setup['iterations'] do
+--     Controller.State.Frame0RandomSeed = setup['curr_seed']
+--     Controller.State.Frame0RandomIndex = offset
+--     bfreset(-1)
+--     advance()
+--     local c = count()
+--     if c > setup['best_count'] then
+--         setup['best_count'] = c
+--         setup['best_seed'] = setup['curr_seed']
+--         setup['best_offset'] = offset
+--     end
+--     -- want to track how badly we memory leak along with our stats
+--     GC.Collect()
+--     printf("(%d,%d)=>%d\t(%d,%d)=>%d\t(MEM: %g)",
+--         setup['curr_seed'], offset, c,
+--         setup['best_seed'], setup['best_offset'], setup['best_count'],
+--         GC.GetTotalMemory(false))
+--     setup['curr_seed'] = setup['curr_seed'] + 1
+--     offset = offset + 0
+--     fileio.WriteFileTable(file, setup)
+-- end
+-- -- setup['curr_seed'] = setup['curr_seed'] + 1
+-- -- fileio.WriteFileTable(file, setup)
+-- interface:Kill()

@@ -21,7 +21,8 @@ local function within_tile_y(box, y_tile)
     return 0
 end
 
-local function _walk_to_tile(p, target_tile)
+local function _walk_to_tile(p, target_tile, onframe)
+    local toggle = false
     while true do
         local player = utils.current_player(p.index)
 
@@ -46,25 +47,63 @@ local function _walk_to_tile(p, target_tile)
         elseif dy > 0 then
             p:down()
         end
-
+        if onframe ~= nil then
+            if toggle then
+                toggle = false
+            else
+                local delay = onframe(p)
+                if delay then
+                    toggle = true
+                end
+            end
+        end
         p:push()
         coroutine.yield()
     end
 end
 
-local function walk_to_tile(target_tile)
+local function walk_to_transition(dir, fade)
+    if fade == nil then
+        fade = true
+    end
     return function(index)
         local p = Gamepad.new(index)
-        _walk_to_tile(p, target_tile)
+        local loc = utils.current_location(p.index)
+        if loc == nil then
+            error("Could not get current location")
+        end
+        local name = loc.Name
+        while name == loc.Name do
+            if dir ~= nil then
+                p[dir](p)
+                p:push()
+            end
+            coroutine.yield()
+            loc = utils.current_location(p.index)
+            if loc == nil then
+                break
+            end
+        end
+        p:push()
+        if fade then
+            screen_fade(p.index)
+        end
+    end
+end
+
+local function walk_to_tile(target_tile, onframe)
+    return function(index)
+        local p = Gamepad.new(index)
+        _walk_to_tile(p, target_tile, onframe)
         p:push()
     end
 end
 
-local function walk_tile_sequence(tile_sequence)
+local function walk_tile_sequence(tile_sequence, onframe)
     return function(index)
         local p = Gamepad.new(index)
         for _, tile in ipairs(tile_sequence) do
-            _walk_to_tile(p, tile)
+            _walk_to_tile(p, tile, onframe)
         end
         p:push()
     end
@@ -80,35 +119,48 @@ local function leave_house(index)
         return
     end
     _walk_to_tile(p, Vector2(3, 9))
-    while loc.Name == "FarmHouse" or loc.Name == "Cabin" do
-        p:down()
-        p:push()
-        coroutine.yield()
-        loc = utils.current_location(p.index)
-    end
-    p:push()
-    screen_fade(p.index)
+    walk_to_transition("down", true)(index)
 end
 
-return {
-    walk = function(index, ...)
-        local args = { ... }
-        if #args == 1 then
+
+
+local function walk(index, ...)
+    -- assuming the input is either a single Vector2 or a sequence of Vector2
+    local args = { ... }
+    if #args == 1 then
+        local a = args[1]
+        if type(a) == "table" then
+            GamePadInputQueue.SetManualFrameFunction(
+                index,
+                walk_tile_sequence(args[1]),
+                "walk_tile_sequence",
+                "walk tile sequence"
+            )
+        else
             GamePadInputQueue.SetManualFrameFunction(
                 index,
                 walk_to_tile(args[1]),
                 "walk_to_tile",
                 "walk to tile (" .. args[1].X .. "," .. args[1].Y .. ")"
             )
-        else
-            GamePadInputQueue.SetManualFrameFunction(
-                index,
-                walk_tile_sequence(args),
-                "walk_tile_sequence",
-                "walk tile sequence"
-            )
         end
-    end,
+    else
+        GamePadInputQueue.SetManualFrameFunction(
+            index,
+            walk_tile_sequence(args),
+            "walk_tile_sequence",
+            "walk tile sequence"
+        )
+    end
+end
+
+return {
+    helpers = {
+        walk_to_tile = walk_to_tile,
+        walk_tile_sequence = walk_tile_sequence,
+        walk_to_transition = walk_to_transition,
+        leave_house = leave_house,
+    },
     funcs = {
         { func = leave_house, name = "leave_house", desc = "walk to house exit" },
     }

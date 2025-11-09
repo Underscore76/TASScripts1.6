@@ -1,44 +1,18 @@
 local utils = require('logic.utils')
 local Gamepad = require('gamepad')
 
-local swing_indexes = {
-    tool = {
-        [66] = 4, -- axe/pickaxe/hoe down
-        [48] = 4, -- axe/pickaxe/hoe left/right
-        [36] = 4, -- axe/pickaxe/hoe down
-        [54] = 4, -- watering can down
-        [58] = 4, -- watering can left/right
-        [62] = 4, -- watering can up
-    },
-    weapon = {
-        [30] = 5, -- sword swipe up
-        [36] = 5, -- sword swipe left/right
-        [24] = 5, -- sword swipe down
-    }
-}
 
 local function _wait_swing(p)
-    local player = utils.current_player(p.index)
+    local player = InstanceCurrentPlayer.Get(p.index)
     if player == nil or player.CurrentSingleAnimation == nil or player.CurrentTool == nil or not player.UsingTool then
         return
     end
 
-    local index = nil
-    if PlayerInfo.IsSwingingSword then
-        index = swing_indexes.weapon[player.CurrentSingleAnimation]
-    else
-        index = swing_indexes.tool[player.CurrentSingleAnimation]
-    end
-
-    while player ~= nil and player.CurrentAnimationIndex < index do
+    local anim = player.CurrentSingleAnimation
+    while player ~= nil and anim == player.CurrentSingleAnimation do
+        p:push()
         coroutine.yield()
-        player = utils.current_player(p.index)
-    end
-    p:push()
-    player = utils.current_player(p.index)
-    while player ~= nil and player.CurrentAnimationElapsed + 1 < player.CurrentAnimationLength do
-        coroutine.yield()
-        player = utils.current_player(p.index)
+        player = InstanceCurrentPlayer.Get(p.index)
     end
 end
 
