@@ -4,8 +4,11 @@ local fishing = {
     stop = false
 }
 
-function fishing.get_rod()
-    local rod = InstanceCurrentPlayer.Get(ActiveInstance.InstanceIndex).Player.CurrentTool
+function fishing.get_rod(index)
+    if index == nil then
+        index = ActiveInstance.InstanceIndex
+    end
+    local rod = InstanceCurrentPlayer.Get(index).Player.CurrentTool
     if (rod ~= nil) and (rod:GetType().Name == "FishingRod") then
         return {
             isTimingCast = rod.isTimingCast,
@@ -397,3 +400,8 @@ return fishing
 -- fishSize *= 1f + (float)Game1.random.Next(-10, 11) / 100f;
 -- fishSize = Math.Max(0f, Math.Min(1f, fishSize));
 -- bool treasure = !Game1.isFestival() && lastUser.fishCaught != null && lastUser.fishCaught.Count() > 1 && Game1.random.NextDouble() < baseChanceForTreasure + (double)lastUser.LuckLevel * 0.005 + ((getBaitAttachmentIndex() == 703) ? baseChanceForTreasure : 0.0) + ((getBobberAttachmentIndex() == 693) ? (baseChanceForTreasure / 3.0) : 0.0) + lastUser.DailyLuck / 2.0 + (lastUser.professions.Contains(9) ? baseChanceForTreasure : 0.0);
+
+--[[
+V(11,53),V(15,52),V(19,50),V(20,48),V(21,40),
+V(30,34),V(36,32),V(43,27),V(48,25),V(52,21),V(52,20)
+--]]

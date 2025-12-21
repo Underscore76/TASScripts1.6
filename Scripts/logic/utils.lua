@@ -157,6 +157,9 @@ end
 
 function utils.swap_to_item(p, item)
     local player = InstanceCurrentPlayer.Get(p.index).Player
+    if player.CurrentTool.Name == item then
+        return
+    end
     local target = _get_inventory_index(player, item)
     if target == -1 then
         error("Could not find item: " .. item)

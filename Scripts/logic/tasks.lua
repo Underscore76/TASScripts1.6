@@ -16,33 +16,42 @@ local function _get_mouse_tile(index)
     return Vector2(mouseTileX, mouseTileY)
 end
 
-local function _register_walk_tile()
-    if ActiveInstance.InstanceIndex == 0 then
+local function _register_mouse_tile(index, key)
+    if index == 0 then
         return
     end
-    local tile = _get_mouse_tile(ActiveInstance.InstanceIndex)
-    FrameTasks.Push(ActiveInstance.InstanceIndex, "Walk", tile)
+    local tile = _get_mouse_tile(index)
+    if RealInputState.IsKeyDown(Keys.LeftShift) then
+        FrameTasks.PushLeft(index, key, tile)
+    else
+        FrameTasks.PushRight(index, key, tile)
+    end
 end
+local function _register_walk_tile()
+    _register_mouse_tile(ActiveInstance.InstanceIndex, "Walk")
+end
+local function _register_tool_tile()
+    _register_mouse_tile(ActiveInstance.InstanceIndex, "Tool")
+end
+local function _register_interact_tile()
+    _register_mouse_tile(ActiveInstance.InstanceIndex, "Swing")
+end
+
 
 local function _register_nav_tiles(mesh)
     if ActiveInstance.InstanceIndex == 0 then
         return
     end
     for i, v in ipairs(mesh) do
-        FrameTasks.Push(ActiveInstance.InstanceIndex, "Walk", v)
+        FrameTasks.PushRight(ActiveInstance.InstanceIndex, "Walk", v)
     end
 end
 
-local function _register_tool_tile()
-    if ActiveInstance.InstanceIndex == 0 then
-        return
-    end
-    local tile = _get_mouse_tile(ActiveInstance.InstanceIndex)
-    FrameTasks.Push(ActiveInstance.InstanceIndex, "Tool", tile)
-end
 
 local function _swing_tool(p, needed_tool, tool_tile)
-    utils.swap_to_item(p, needed_tool)
+    if needed_tool ~= nil then
+        utils.swap_to_item(p, needed_tool)
+    end
     local player = InstanceCurrentPlayer.Get(p.index)
     local currTile = player.CurrentTile
     if currTile.X < tool_tile.X then
@@ -129,10 +138,12 @@ local function _try_run()
                         walk_to_tile(task.Tile, nil)(index)
                     end
                 elseif task.Type == "Tool" then
-                    local details = _get_tool_details(index, task)
-                    _swing_tool(p, details.needed_tool, task.Tile)
+                    -- local details = _get_tool_details(index, task)
+                    _swing_tool(p, nil, task.Tile)
+                elseif task.Type == "Interact" then
+                    _swing_tool(p, nil, task.Tile)
                 end
-                FrameTasks.Pop(index)
+                FrameTasks.PopLeft(index)
             end
         end,
         "use tool",
@@ -143,13 +154,22 @@ end
 keybinds.clear()
 keybinds.add(Keys.O, _register_walk_tile)
 keybinds.add(Keys.P, _register_tool_tile)
-keybinds.add(Keys.L, _try_run)
+keybinds.add(Keys.L, function()
+    if RealInputState.IsKeyDown(Keys.LeftShift) then
+        GamePadInputQueue.ClearPlayerCoroutine(ActiveInstance.InstanceIndex)
+    else
+        _try_run()
+    end
+end
+)
 keybinds.add(Keys.J, function()
-    FrameTasks.Pop(ActiveInstance.InstanceIndex)
+    if RealInputState.IsKeyDown(Keys.LeftShift) then
+        FrameTasks.PopLeft(ActiveInstance.InstanceIndex)
+    else
+        FrameTasks.PopRight(ActiveInstance.InstanceIndex)
+    end
 end)
-keybinds.add(Keys.K, function()
-    FrameTasks.RemoveAt(ActiveInstance.InstanceIndex, FrameTasks.Count(ActiveInstance.InstanceIndex) - 1)
-end)
+keybinds.add(Keys.K, _register_interact_tile)
 
 function walk_nav_mesh(index, from, to)
     if index == nil then
@@ -164,4 +184,14 @@ function walk_nav_mesh(index, from, to)
         error("No nav mesh path from " .. from .. " to " .. to)
     end
     _register_nav_tiles(path)
+end
+
+function push_tile(index, tile)
+    if index == nil then
+        index = ActiveInstance.InstanceIndex
+    end
+    if index == 0 then
+        return
+    end
+    FrameTasks.PushRight(index, "Walk", tile)
 end

@@ -16,11 +16,13 @@ Controller.Console.ShowWarnings = true
 SkullCavernsSolver.SetMaxLookAhead(200)
 
 function cr()
+    Controller.PushStackTrace = true
     RandomExtensions.StackTraces:Clear()
 end
 
 function dr()
     exec('dump_random')
+    Controller.PushStackTrace = false
 end
 
 function ff()
