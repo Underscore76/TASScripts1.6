@@ -13,12 +13,9 @@ navigate.DIR = {
     UPLEFT = Vector2(-0.707, -0.707)
 }
 
-function navigate.generate_path(tile, use_tool)
+function navigate.generate_path(tile)
     if tile == nil then
         return
-    end
-    if use_tool == nil then
-        use_tool = false
     end
     Controller.PathFinder:Reset()
     Controller.PathFinder:Update(0, tile.X, tile.Y, false)
@@ -28,12 +25,9 @@ local function step(vec, dir, speed)
     return vec + dir * speed
 end
 
-function navigate.walk_to_tile(tile, frame_func, use_tool, contained, centered)
+function navigate.walk_to_tile(tile, frame_func, contained, centered)
     if tile == nil then
         error("tile is nil")
-    end
-    if use_tool == nil then
-        use_tool = false
     end
     if contained == nil then
         contained = false
@@ -49,7 +43,7 @@ function navigate.walk_to_tile(tile, frame_func, use_tool, contained, centered)
         return Game1.player.Position
     end
     -- printf("walking to tile %d,%d", tile.X, tile.Y)
-    navigate.generate_path(tile, use_tool)
+    navigate.generate_path(tile)
     local counter = 0
     local xfunc = tile_funcs.CompareTileWidth
     local yfunc = tile_funcs.CompareTileHeight
