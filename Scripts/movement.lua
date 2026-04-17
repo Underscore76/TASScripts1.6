@@ -1,5 +1,5 @@
-local inventory = require('inventory')
-local input = require('input')
+local inventory = require('core.inventory')
+local input = require('core.input')
 
 local movement = {}
 
@@ -21,7 +21,7 @@ function movement.UseToolOnTile(toolName, tile)
             local t = Vector2(p.X + x, p.Y + y)
             if t.X == tile.X and t.Y == tile.Y then
                 movement.SwapToItem(toolName)
-                local mouse = input.GetMouseTileFromGlobal(tile.X, tile.Y)
+                local mouse = input.get_mouse_tile_from_global(tile.X, tile.Y)
                 advance({ mouse = mouse })
                 mouse = { X = mouse.X, Y = mouse.Y, left = true }
                 advance({ mouse = mouse })

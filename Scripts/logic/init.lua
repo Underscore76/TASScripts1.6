@@ -11,16 +11,16 @@ local modules = {
 require('logic.tasks')
 local walk_tile_sequence = require('logic.walk').helpers.walk_tile_sequence
 
-GamePadInputQueue.Clear()
+LuaFunctionRegistry.Clear()
 for _, module in ipairs(modules) do
     if type(module) == "table" and module[1] then -- check if it's an array of functions
         for _, v in ipairs(module) do
-            GamePadInputQueue.RegisterFunction(v.name, v.func, v.desc)
+            LuaFunctionRegistry.RegisterFunction(v.name, v.func, v.desc)
         end
     end
 end
 
-GamePadInputQueue.RegisterFunction("pause", function(index)
+LuaFunctionRegistry.RegisterFunction("pause", function(index)
     while true do
         coroutine.yield()
     end

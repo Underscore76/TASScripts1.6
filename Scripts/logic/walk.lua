@@ -1,5 +1,5 @@
 local utils = require('logic.utils')
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 local screen_fade = require('logic.screen_fade').helpers.screen_fade
 
 local function within_tile_x(box, x_tile)

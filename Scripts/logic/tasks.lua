@@ -1,5 +1,5 @@
 local utils = require('logic.utils')
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 local keybinds = require('core.keybinds')
 local walk_to_tile = require('logic.walk').helpers.walk_to_tile
 local swing = require('logic.swing_tool').helpers.swing

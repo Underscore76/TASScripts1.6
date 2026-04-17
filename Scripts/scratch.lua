@@ -344,22 +344,25 @@ end
 --         return tostring(scratch.sim_book() - game1_random():get_Index())
 --     end
 -- )
-LuaOverlay.AddData("Prev Frames",
-    function()
-        local f = Controller.State.FrameStates.Count
-        local results = {}
-        for i = 1, 10 do
-            local s0 = f - i
-            local s1 = f - i - 1
-            local diff = (
-                Controller.State.FrameStates[s0].randomState.index
-                - Controller.State.FrameStates[s1].randomState.index
-            )
-            table.insert(results, tostring(diff))
-        end
-        return table.concat(results, ", ")
-    end
-)
+-- LuaOverlay.AddData("Prev Frames",
+--     function()
+--         local f = Controller.State.FrameStates.Count
+--         if Controller.State.FrameStates.Count < 10 then
+--             return "not enough frames"
+--         end
+--         local results = {}
+--         for i = 1, 10 do
+--             local s0 = f - i
+--             local s1 = f - i - 1
+--             local diff = (
+--                 Controller.State.FrameStates[s0].randomState.index
+--                 - Controller.State.FrameStates[s1].randomState.index
+--             )
+--             table.insert(results, tostring(diff))
+--         end
+--         return table.concat(results, ", ")
+--     end
+-- )
 
 -- LuaOverlay.AddData("Hit - BookVoid",
 --     function()

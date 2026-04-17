@@ -1,6 +1,6 @@
 local nav = require('navigate')
 local frame_funcs = require('frame_funcs')
-local input = require('input')
+local input = require('core.input')
 local view = require('core.view')
 
 local mines = {
@@ -315,7 +315,7 @@ function mines.find(index_lookahead)
             advance({ mouse = { X = object.X, Y = object.Y } })
         elseif command == "unpause" then
             -- need to assert that we don't mouse over any items in the crafting page
-            local m = input.GetMouseTileFromGlobal(15, 11)
+            local m = input.get_mouse_tile_from_global(15, 11)
             advance({ mouse = { X = math.floor(m.X), Y = math.floor(m.Y) }, keyboard = { Keys.Escape } })
         end
         ::continue::

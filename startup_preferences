@@ -7,7 +7,7 @@
   <levelTenCombat>false</levelTenCombat>
   <skipWindowPreparation>false</skipWindowPreparation>
   <sawAdvancedCharacterCreationIndicator>true</sawAdvancedCharacterCreationIndicator>
-  <timesPlayed>49564</timesPlayed>
+  <timesPlayed>4097</timesPlayed>
   <windowMode>1</windowMode>
   <displayIndex>0</displayIndex>
   <gamepadMode>Auto</gamepadMode>
@@ -15,7 +15,6 @@
   <fullscreenResolutionX>3456</fullscreenResolutionX>
   <fullscreenResolutionY>2234</fullscreenResolutionY>
   <lastEnteredIP />
-  <languageCode>en</languageCode>
   <clientOptions>
     <autoRun>true</autoRun>
     <dialogueTyping>true</dialogueTyping>
@@ -25,24 +24,24 @@
     <playFootstepSounds>true</playFootstepSounds>
     <alwaysShowToolHitLocation>false</alwaysShowToolHitLocation>
     <hideToolHitLocationWhenInMotion>true</hideToolHitLocationWhenInMotion>
-    <pauseWhenOutOfFocus>true</pauseWhenOutOfFocus>
-    <pinToolbarToggle>false</pinToolbarToggle>
+    <pauseWhenOutOfFocus>false</pauseWhenOutOfFocus>
+    <pinToolbarToggle>true</pinToolbarToggle>
     <mouseControls>false</mouseControls>
     <gamepadControls>false</gamepadControls>
     <rumble>true</rumble>
     <ambientOnlyToggle>false</ambientOnlyToggle>
-    <zoomButtons>false</zoomButtons>
+    <zoomButtons>true</zoomButtons>
     <invertScrollDirection>false</invertScrollDirection>
-    <screenFlash>true</screenFlash>
+    <screenFlash>false</screenFlash>
     <showPlacementTileForGamepad>true</showPlacementTileForGamepad>
     <snappyMenus>true</snappyMenus>
-    <showAdvancedCraftingInformation>false</showAdvancedCraftingInformation>
+    <showAdvancedCraftingInformation>true</showAdvancedCraftingInformation>
     <showMPEndOfNightReadyStatus>false</showMPEndOfNightReadyStatus>
     <muteAnimalSounds>false</muteAnimalSounds>
     <vsyncEnabled>false</vsyncEnabled>
     <fullscreen>false</fullscreen>
     <windowedBorderlessFullscreen>false</windowedBorderlessFullscreen>
-    <showClearBackgrounds>false</showClearBackgrounds>
+    <showClearBackgrounds>true</showClearBackgrounds>
     <useChineseSmoothFont>false</useChineseSmoothFont>
     <useAlternateFont>false</useAlternateFont>
     <ipConnectionsEnabled>true</ipConnectionsEnabled>
@@ -51,18 +50,18 @@
     <stowingMode>Off</stowingMode>
     <gamepadMode>Auto</gamepadMode>
     <useLegacySlingshotFiring>false</useLegacySlingshotFiring>
-    <musicVolumeLevel>0.75</musicVolumeLevel>
-    <soundVolumeLevel>1</soundVolumeLevel>
-    <footstepVolumeLevel>0.9</footstepVolumeLevel>
-    <ambientVolumeLevel>0.75</ambientVolumeLevel>
-    <snowTransparency>1</snowTransparency>
+    <musicVolumeLevel>0.1</musicVolumeLevel>
+    <soundVolumeLevel>0.6</soundVolumeLevel>
+    <footstepVolumeLevel>0.6</footstepVolumeLevel>
+    <ambientVolumeLevel>0.4</ambientVolumeLevel>
+    <snowTransparency>0</snowTransparency>
     <dialogueFontScale>1</dialogueFontScale>
     <zoomLevel>1</zoomLevel>
     <localCoopBaseZoomLevel>1</localCoopBaseZoomLevel>
     <uiScale>-1</uiScale>
-    <localCoopDesiredUIScale>1.5</localCoopDesiredUIScale>
-    <preferredResolutionX>1920</preferredResolutionX>
-    <preferredResolutionY>1080</preferredResolutionY>
+    <localCoopDesiredUIScale>1.25</localCoopDesiredUIScale>
+    <preferredResolutionX>3456</preferredResolutionX>
+    <preferredResolutionY>2234</preferredResolutionY>
     <serverPrivacy>FriendsOnly</serverPrivacy>
     <actionButton>
       <InputButton>

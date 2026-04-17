@@ -16,7 +16,7 @@ local p4_fav = "The Bit"
 
 -- GamePadInputQueue.Clear()
 -- buttons for players to handle their character creation
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 local p2 = Gamepad.new(1)
 local p3 = Gamepad.new(2)
 local p4 = Gamepad.new(3)

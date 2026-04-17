@@ -1,5 +1,5 @@
 local utils = require('logic.utils')
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 
 local function _screen_fade(p)
     local screenFade = Reflector.GetStaticVar(p.index, "Game1_screenFade")

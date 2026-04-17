@@ -1,11 +1,11 @@
-local input = require('input')
+local input = require('core.input')
 local frame_funcs = {}
 
 function frame_funcs.MouseTile(tile)
     return function()
         return {
             override_keyboard = false,
-            mouse = input.GetMouseTileFromGlobal(tile.X, tile.Y)
+            mouse = input.get_mouse_tile_from_global(tile.X, tile.Y)
         }
     end
 end
@@ -13,7 +13,7 @@ end
 function frame_funcs.click_chest(chestTile)
     return function()
         -- mouse over the chest until we can click it
-        local mouse = input.GetMouseTileFromGlobal(chestTile.X, chestTile.Y)
+        local mouse = input.get_mouse_tile_from_global(chestTile.X, chestTile.Y)
         if Game1.fadeToBlack then
             return {
                 override_keyboard = false,

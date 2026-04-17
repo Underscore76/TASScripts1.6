@@ -1,4 +1,4 @@
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 local utils = require('logic.utils')
 local walk = require('logic.walk').helpers
 

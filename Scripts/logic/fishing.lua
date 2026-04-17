@@ -1,5 +1,5 @@
 local utils = require('logic.utils')
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 
 local function _wait_nibble(p)
     local rod = InstanceCurrentPlayer.Get(p.index).CurrentTool

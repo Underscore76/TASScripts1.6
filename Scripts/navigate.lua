@@ -1,4 +1,4 @@
-Queue = require("queue")
+Deque = require("core.collections.deque")
 local tile_funcs = require("tile_funcs")
 
 local navigate = {}
@@ -21,7 +21,7 @@ function navigate.generate_path(tile, use_tool)
         use_tool = false
     end
     Controller.PathFinder:Reset()
-    Controller.PathFinder:Update(tile.X, tile.Y, false)
+    Controller.PathFinder:Update(0, tile.X, tile.Y, false)
 end
 
 local function step(vec, dir, speed)

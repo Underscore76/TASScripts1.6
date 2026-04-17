@@ -1,5 +1,5 @@
 local utils = require('logic.utils')
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 local wait_swing = require('logic.wait_swing').helpers.wait_swing
 
 local function _cut_weed(p)

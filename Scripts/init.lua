@@ -1,40 +1,44 @@
-﻿local keybinds = require('core.keybinds')
-view = require('core.view')
-weeds = require('weeds')
+﻿-- local keybinds = require('core.keybinds')
+-- view = require('core.view')
+-- weeds = require('weeds')
 
--- cm = require('chair_move')
-MapView.Instance.MapOverlays:Add(MouseData())
-MapView.Instance.MapOverlays:Add(OverlayManager.Get("tiletext"))
--- run some additional configuration to make things how you want on boot
+-- -- cm = require('chair_move')
+-- MapView.Instance.MapOverlays:Add(MouseData())
+-- MapView.Instance.MapOverlays:Add(OverlayManager.Get("tiletext"))
+-- -- run some additional configuration to make things how you want on boot
 
-exec("loadengine tmp") -- can swap to whatever engine state you like
-m = require('mines')
-s = require('scratch')
+-- exec("loadengine tmp") -- can swap to whatever engine state you like
+-- m = require('mines')
+-- s = require('scratch')
+-- require('bobber')
 
-Controller.Console.ShowWarnings = true
+-- require('create_char')
 
-SkullCavernsSolver.SetMaxLookAhead(200)
+-- -- Controller.Console.DebugMode = true
+-- Controller.Console.ShowWarnings = false
 
-function cr()
-    Controller.PushStackTrace = true
-    RandomExtensions.StackTraces:Clear()
-end
+-- SkullCavernsSolver.SetMaxLookAhead(200)
 
-function dr()
-    exec('dump_random')
-    Controller.PushStackTrace = false
-end
+-- function cr()
+--     Controller.PushStackTrace = true
+--     RandomExtensions.StackTraces:Clear()
+-- end
 
-function ff()
-    Controller.Console.ShowWarnings = true
-    Controller.Console.ShowErrors = true
-end
+-- function dr()
+--     exec('dump_random')
+--     Controller.PushStackTrace = false
+-- end
 
-function gg()
-    Controller.Console.ShowWarnings = false
-    Controller.Console.ShowErrors = false
-end
+-- function ff()
+--     Controller.Console.ShowWarnings = true
+--     Controller.Console.ShowErrors = true
+-- end
 
-function hh()
-    Controller.Console:WriteToRandomFile()
-end
+-- function gg()
+--     Controller.Console.ShowWarnings = false
+--     Controller.Console.ShowErrors = false
+-- end
+
+-- function hh()
+--     Controller.Console:WriteToRandomFile()
+-- end

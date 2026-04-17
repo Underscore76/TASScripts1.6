@@ -1,9 +1,9 @@
-local Queue = require('queue')
+---clone frame inputs and play them back at a later time
+---useful for things like replaying non-rng dependent inputs
+
 local replay = {
     frames = nil,
 }
-
--- grab all the frame data
 
 local function state_to_table(frame_state)
     -- copy the keyboardState
@@ -36,11 +36,10 @@ function replay.clone(f_start, f_end)
         f_end = f_start
         f_start = 0
     end
-    replay.frames = Queue()
+    replay.frames = {}
     for i = f_start, f_end - 1 do
-        -- print(i)
         local frame = Controller.State.FrameStates[i]
-        replay.frames.pushright(state_to_table(frame))
+        table.insert(replay.frames, state_to_table(frame))
     end
 end
 
@@ -50,8 +49,7 @@ function replay.playback()
         return
     end
 
-    while not replay.frames.empty() do
-        local frame = replay.frames.popleft()
+    for i, frame in ipairs(replay.frames) do
         advance(frame)
     end
 end

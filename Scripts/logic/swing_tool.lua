@@ -1,6 +1,6 @@
 -- TODO: swap to coroutine.yield
 local utils = require('logic.utils')
-local Gamepad = require('gamepad')
+local Gamepad = require('core.input.gamepad')
 local wait_swing = require('logic.wait_swing').helpers.wait_swing
 
 local facingDirection = {
@@ -10,6 +10,8 @@ local facingDirection = {
     [3] = "left",
 }
 
+---@param p Gamepad
+---@param dir integer
 local function _swing_dir(p, dir)
     local player = InstanceCurrentPlayer.Get(p.index)
     if player == nil or player.CurrentTool == nil or player.UsingTool then
