@@ -1,8 +1,11 @@
-local function advance_fade()
-    local sf = InstanceScreenFade.Get(0) -- 0 here is the first player index, in case you were doing something in multiplayer
-    while sf.FadeIn or sf.FadeToBlack do
-        advance()
+local inventory = require("core.inventory")
+local input = require("core.input")
+local function run(x)
+    local keys = inventory.get_tool_key(x)
+    if keys == nil then
+        return
     end
+    print(keys)
 end
 
-advance_fade()
+return run

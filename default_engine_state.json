@@ -18,6 +18,7 @@
     "MonsterDrop": true,
     "MouseData": true,
     "ObjectDrops": false,
+    "RegionMap": false,
     "Sleep": true,
     "TaskPaths": false,
     "Grid": true,

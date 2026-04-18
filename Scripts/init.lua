@@ -1,4 +1,17 @@
-﻿-- local keybinds = require('core.keybinds')
+﻿local nav = require('core.coroutines.nav')
+local input = require("core.input")
+local keybinds = require("core.keybinds")
+
+keybinds.remove(Keys.J)
+keybinds.add(Keys.J,
+    function()
+        local m = Mouse.GetState()
+        local t = input.get_tile_from_local(Vector2(m.X, m.Y))
+        KeyboardMouseInputQueue.PushFunction(nav.walk_to_tile(t), "walk_to_tile")
+    end
+)
+
+-- local keybinds = require('core.keybinds')
 -- view = require('core.view')
 -- weeds = require('weeds')
 
